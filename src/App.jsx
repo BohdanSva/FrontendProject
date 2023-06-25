@@ -11,6 +11,8 @@ import News from './pages/News';
 import NotFound from "./pages/NotFound";
 import Reviews from './pages/Reviews';
 import Search from './pages/Search';
+import Loading from './pages/Loading';
+import Output from './pages/Output';
 
 // Styles
 import './assets/styles/app.css';
@@ -27,6 +29,8 @@ function App() {
         <Route path="/news" element={<News />} />
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/loading" element={<Loading />} />
+        <Route path="/output" element={<Output />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

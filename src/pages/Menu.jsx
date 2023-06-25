@@ -1,5 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import newsImage from "../assets/images/menu/news.jpg";
+import blogImage from "../assets/images/menu/blog.jpg";
+import searchImage from "../assets/images/menu/search.jpg";
+import reviewsImage from "../assets/images/menu/reviews.jpg";
 
 const Menu = () => {
     const navigate = useNavigate();
@@ -10,27 +14,74 @@ const Menu = () => {
     const navigateContacts = () => navigate('/contacts');
 
     return (
-    <>
+    <> 
+    {/* Component cards / Bootstrap */}
+    <div className="row">
+    <div className="col-sm-6 mb-3 mb-sm-0">
+        <div className="card">
+        <img src={newsImage} className="card-img-top img-responsive" alt="news image"/>
+        <div className="card-body">
+            <h5 className="card-title">News Feed</h5>
+            <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>          
+            <a onClick={navigateNews} className="btn btn-primary">See latest news</a>
+        </div>
+        </div>
+    </div>
+    <div className="col-sm-6">
+        <div className="card">
+        <img src={blogImage} className="card-img-top img-responsive" alt="blog image"/>
+        <div className="card-body">
+            <h5 className="card-title">Hotel Blog</h5>
+            <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a onClick={navigateBlog} className="btn btn-primary">Enter the blogosphere</a>
+        </div>
+        </div>
+    </div>
+    </div>
 
-    <header>
-    <h1 className="text-center mt-5 mb-5"> This is the menu page </h1>
-    </header>
+    <div className="row">
+    <div className="mb-3 mb-sm-0 mt-3">
+        <div className="card">
+        <div className="card-body">
+            <h1 className="card-title animate__animated animate__zoomInDown"> Hotel Pricing Engine </h1>
+            <p className="card-text"> Compare hotel prices by geolocation </p>
+        </div>
+        </div>
+    </div>
+    </div>
 
-    {/* Submit buttons / Bootstrap style */}
-    <div className="d-grid gap-2 col-3 mx-auto mb-3">
-        <button onClick={navigateNews} className="btn btn-outline-primary" type="submit">News</button>
+    <div className="row">
+    <div className="col-sm-6 mb-3 mb-sm-0 mt-3">
+        <div className="card">
+        <img src={searchImage} className="card-img-top img-responsive" alt="blog image"/>
+        <div className="card-body">
+            <h5 className="card-title">Search</h5>
+            <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a onClick={navigateSearch} className="btn btn-primary"> Enter hotel search engine </a>
+        </div>
+        </div>
     </div>
-    <div className="d-grid gap-2 col-3 mx-auto mb-3">
-        <button onClick={navigateBlog} className="btn btn-outline-primary" type="submit">Blog</button>
+    <div className="col-sm-6 mt-3">
+        <div className="card">
+        <img src={reviewsImage} className="card-img-top img-responsive" alt="blog image"/>
+        <div className="card-body">
+            <h5 className="card-title">Reviews</h5>
+            <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a onClick={navigateReviews} className="btn btn-primary">Explore product reviews</a>
+        </div>
+        </div>
     </div>
-    <div className="d-grid gap-2 col-3 mx-auto mb-3">
-        <button onClick={navigateSearch} className="btn btn-outline-primary" type="submit">Search</button>
     </div>
-    <div className="d-grid gap-2 col-3 mx-auto mb-3">
-        <button onClick={navigateReviews} className="btn btn-outline-primary" type="submit">Reviews</button>
+
+    <div className="row">
+    <div className="mb-3 mb-sm-0 mt-3">
+        <div className="card">
+        <div className="card-body">
+            <h5 className="card-title">Contacts</h5>
+            <a onClick={navigateContacts} className="btn btn-primary">Contact us</a>
+        </div>
+        </div>
     </div>
-    <div className="d-grid gap-2 col-3 mx-auto mb-3">
-        <button onClick={navigateContacts} className="btn btn-outline-primary" type="submit">Contacts</button>
     </div>
 
     </>

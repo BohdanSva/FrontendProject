@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import axios from 'axios';
 import {
-  setQuery, setUnits, setSlider, setLocation, setHotelToken, setHotelCode, setHotelRates,
-  selectQuery, selectUnits, selectSlider, selectLocation, selectHotelToken, selectHotelCode, selectHotelRates } 
+  setQuery, setUnits, setSlider, setLocation, setHotelToken, setHotelInfo, setHotelIds, setHotelRates,
+  selectQuery, selectUnits, selectSlider, selectLocation, selectHotelToken, selectHotelInfo, selectHotelIds, selectHotelRates } 
   from "../features/search/searchSlice";
 
 const Search = () => {
@@ -14,7 +14,9 @@ const Search = () => {
   const sliderRange = useSelector(selectSlider);
   const location = useSelector(selectLocation);
   const hotelToken = useSelector(selectHotelToken);
-  const hotelCode = useSelector(selectHotelCode);
+  const hotelInfo = useSelector(selectHotelInfo);
+  const hotelIds = useSelector(selectHotelIds);
+  const hotelRates = useSelector(selectHotelRates);
 
   // Save every user search input into the store
   const onSearchInput = (keystroke) => {
@@ -31,13 +33,17 @@ const Search = () => {
   const sendAddress = (click) => {
     click.preventDefault(); // Do not reload page on click / sending data to API
     getLocation(query)
-    getHotelRates();
   }
   useEffect(()=>{
     if(location){
-      getHotelCode();
+      getHotelInfo(); // getHotelInfo runs after we have location data
     }
   }, [location])
+  useEffect(()=>{ // getHotelRates runs after we have hotel info
+    if(hotelInfo){
+      getHotelRates();
+    }
+  }, [hotelInfo])
 
   // Initialize API - get query address coordinates
   const getLocation = async () => {
@@ -60,8 +66,8 @@ const Search = () => {
       "content-type": "application/x-www-form-urlencoded",
     },
     data: {
-      "client_id": "2pmAX7b6mBgZ6eUKplzOTFI8pqAoVtwX",
-      "client_secret": "f6h2AEnIec42u2qq",
+      "client_id": "GNwXWLLKBGWnpFcrte9mdsnISSpcrlKS",
+      "client_secret": "FboBWvEcEbmYsI8q",
       "grant_type": "client_credentials",
     }
     });
@@ -73,27 +79,31 @@ const Search = () => {
     setInterval(getHotelToken, 1800 * 1000) // Get a new token every 30 minutes thereafter
   }, []);
 
-  // Initialize API - get hotel code/ID within the range from query address
-  const getHotelCode = async () => {
-    const hotelCodeURL = `https://test.api.amadeus.com/v1/reference-data/locations/hotels/by-geocode?latitude=${location[0].lat}&longitude=${location[0].lon}&radius=${sliderRange}&radiusUnit=${units}&hotelSource=ALL`;
+  // Initialize API - get hotel info within the range from query address
+  const getHotelInfo = async () => {
+    const hotelInfoURL = `https://test.api.amadeus.com/v1/reference-data/locations/hotels/by-geocode?latitude=${location[0].lat}&longitude=${location[0].lon}&radius=${sliderRange}&radiusUnit=${units}&hotelSource=ALL`;
     try {
     const {data} = await axios.request({
-      url: hotelCodeURL,
+      url: hotelInfoURL,
       method: "get",
       headers: {
         "authorization": `Bearer ${hotelToken}`,
       },
     });
-    dispatch(setHotelCode(data)); // Dispatches action setLocation, so data = "hotelCode" in the store
+    dispatch(setHotelInfo(data)); // Dispatches action setHotelInfo, so data = "hotelInfo" in the store
     } 
     catch (error) {console.log(error);}
   }
 
   // Initialize API - get hotel rates
-  const getHotelRates = async () => {
-    //Customise URL!
-    const hotelRatesURL = `https://test.api.amadeus.com/v3/shopping/hotel-offers?hotelIds=MCLONGHM&adults=1&checkInDate=2023-11-22&roomQuantity=1&paymentPolicy=NONE&bestRateOnly=true`;
+  const getHotelRates = async (hotel) => {
+    const checkIn = "2023-11-22"; // Make customisable!
+    const checkOut = "2023-11-23"; // Make customisable! 
+    
     try {
+    for (let hotel in hotelInfo.data) { // Loop through every hotel in hotelInfo.data array
+    console.log(hotelInfo.data[hotel].hotelId);
+    const hotelRatesURL = `https://test.api.amadeus.com/v3/shopping/hotel-offers?hotelIds=${hotelInfo.data[hotel].hotelId}&adults=1&checkInDate=${checkIn}&checkOutDate=${checkOut}&roomQuantity=1&paymentPolicy=NONE&bestRateOnly=true`;
     const {data} = await axios.request({
       url: hotelRatesURL,
       method: "get",
@@ -101,7 +111,9 @@ const Search = () => {
         "authorization": `Bearer ${hotelToken}`,
       },
     });
-    dispatch(setHotelRates(data)); // Dispatches action setLocation, so data = "hotelCode" in the store
+    console.log(data);
+    dispatch(setHotelRates(data)); // Dispatches action setHotelRates, so data = "hotelRates" in the store
+    }; 
     } 
     catch (error) {console.log(error);}
   }
