@@ -2,20 +2,23 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import axios from 'axios';
 import {
-  setQuery, setUnits, setSlider, setLocation, setHotelToken, setHotelInfo, setHotelIds, setHotelRates,
-  selectQuery, selectUnits, selectSlider, selectLocation, selectHotelToken, selectHotelInfo, selectHotelIds, selectHotelRates } 
+  setQuery, setUnits, setSlider, setLocation, setHotelToken, setHotelInfo, setHotelRates, setCheckin, setCheckout,
+  selectQuery, selectUnits, selectSlider, selectCheckin, selectCheckout, selectLocation, selectHotelToken, selectHotelInfo, 
+  selectHotelRates } 
   from "../features/search/searchSlice";
+import Datepicker from '../features/datepicker/datepicker';
 
 const Search = () => {
-  //Hooks definitions
+  // Hooks definitions
   const dispatch = useDispatch();
   const query = useSelector(selectQuery);
   let units = useSelector(selectUnits);
   const sliderRange = useSelector(selectSlider);
+  const checkin = useSelector(selectCheckin);
+  const checkout = useSelector(selectCheckout);
   const location = useSelector(selectLocation);
   const hotelToken = useSelector(selectHotelToken);
   const hotelInfo = useSelector(selectHotelInfo);
-  const hotelIds = useSelector(selectHotelIds);
   const hotelRates = useSelector(selectHotelRates);
 
   // Save every user search input into the store
@@ -27,6 +30,12 @@ const Search = () => {
   }
   const onRadioInput = (radio) => {
     dispatch(setUnits(radio.target.value)); // Measurement system units saved into "units"
+  }
+  const onCheckin = (event) => {
+    dispatch(setCheckin(event.target.value)); // Selected checkin date saved into "checkin"
+  }
+  const onCheckout = (event) => {
+    dispatch(setCheckout(event.target.value)); // Selected checkout date saved into "checkout"
   }
 
   // Launch API calls after user clicks send
@@ -96,14 +105,10 @@ const Search = () => {
   }
 
   // Initialize API - get hotel rates
-  const getHotelRates = async (hotel) => {
-    const checkIn = "2023-11-22"; // Make customisable!
-    const checkOut = "2023-11-23"; // Make customisable! 
-    
+  const getHotelRates = async (hotel) => {   
     try {
     for (let hotel in hotelInfo.data) { // Loop through every hotel in hotelInfo.data array
-    console.log(hotelInfo.data[hotel].hotelId);
-    const hotelRatesURL = `https://test.api.amadeus.com/v3/shopping/hotel-offers?hotelIds=${hotelInfo.data[hotel].hotelId}&adults=1&checkInDate=${checkIn}&checkOutDate=${checkOut}&roomQuantity=1&paymentPolicy=NONE&bestRateOnly=true`;
+    const hotelRatesURL = `https://test.api.amadeus.com/v3/shopping/hotel-offers?hotelIds=${hotelInfo.data[hotel].hotelId}&adults=1&checkInDate=${checkin}&checkOutDate=${checkout}&roomQuantity=1&paymentPolicy=NONE&bestRateOnly=true`;
     const {data} = await axios.request({
       url: hotelRatesURL,
       method: "get",
@@ -112,7 +117,9 @@ const Search = () => {
       },
     });
     console.log(data);
-    dispatch(setHotelRates(data)); // Dispatches action setHotelRates, so data = "hotelRates" in the store
+    if (data.data.length > 0) { // Only save hotels with pricing into store
+      dispatch(setHotelRates(data.data)); // Dispatches action setHotelRates, so data = "hotelRates" in the store
+    };
     }; 
     } 
     catch (error) {console.log(error);}
@@ -157,15 +164,34 @@ const Search = () => {
       <label htmlFor="customRange1" className="form-label mt-1"> Search within the range of {sliderRange} {units=="KM" ? "kilometers" : "miles"} </label>
       <input type="range" className="form-range" onChange={onSliderInput} min="0" max="100" defaultValue="50" step="1"/>
 
+      {Datepicker()}
+      <div className="container text-center">
+      <div className="row">
+      <div className="col mb-3">
+        <label htmlFor="exampleInputEmail1" className="form-label">Check-in</label>
+        <div className="resetDate">
+          <input type="text" onInput={onCheckin} placeholder="From" data-input/>
+        </div>
+      </div>
+      <div className="col mb-3">
+        <label htmlFor="exampleInputEmail1" className="form-label">Check-out</label>
+        <div className="resetDate">
+          <input type="text" onInput={onCheckout} placeholder="To" data-input/>
+        </div>
+      </div>
+      </div>
+      </div>
+
       {/* Submit button - Bootstrap */}
       <div className="d-grid gap-2 col-3 mx-auto mt-5 mb-3">
         <button onClick={sendAddress} className="btn btn-primary" type="submit">Submit search</button>
       </div>
+      
     </form>
     </section>
 
     </>
   );
-}
+};
  
 export default Search;
