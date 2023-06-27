@@ -1,9 +1,6 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
 const Reviews = () => {
-    const navigate = useNavigate();
-    const navigateMenu = () => navigate('/menu');
 
     return (
     <>
@@ -11,127 +8,116 @@ const Reviews = () => {
     <header>
     <h1 className="text-center mt-5 mb-5"> This is the reviews page </h1>
     </header>
-
-    {/* Component grid cards / Bootstrap */}
-    <div className="row row-cols-1 row-cols-md-3 g-4">
-    <div className="col">
-        <div className="card h-100">
-        <img src="..." className="card-img-top" alt="..."/>
-        <div className="card-body">
-            <h5 className="card-title">Card title</h5>
-            <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+     
+    {/* Review Form / Material Design for Bootstrap */}
+    <section>
+        
+    <div className="row d-flex justify-content-center">
+        <div className="col-md-10 col-xl-8 text-center">
+        <h3 className="mb-4">Testimonials</h3>
+        <p className="mb-4 pb-2 mb-md-5 pb-md-0">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet
+            numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum
+            quisquam eum porro a pariatur veniam.
+        </p>
         </div>
-        </div>
-    </div>
-    <div className="col">
-        <div className="card h-100">
-        <img src="..." className="card-img-top" alt="..."/>
-        <div className="card-body">
-            <h5 className="card-title">Card title</h5>
-            <p className="card-text">This is a short card.</p>
-        </div>
-        </div>
-    </div>
-    <div className="col">
-        <div className="card h-100">
-        <img src="..." className="card-img-top" alt="..."/>
-        <div className="card-body">
-            <h5 className="card-title">Card title</h5>
-            <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-        </div>
-        </div>
-    </div>
-    <div className="col">
-        <div className="card h-100">
-        <img src="..." className="card-img-top" alt="..."/>
-        <div className="card-body">
-            <h5 className="card-title">Card title</h5>
-            <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        </div>
-        </div>
-    </div>
     </div>
 
-    {/* Submit buttons / Bootstrap style */}
-    <div className="d-grid gap-2 col-3 mx-auto mb-3">
-        <button className="btn btn-outline-primary" type="submit">Add review</button>
-    </div>
-    <div className="d-grid gap-2 col-3 mx-auto mb-3">
-        <button onClick={navigateMenu} className="btn btn-outline-primary" type="submit">Back to menu</button>
+    <div className="row text-center">
+        <div className="col-md-4 mb-5 mb-md-0">
+        <div className="d-flex justify-content-center mb-4">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp"
+            className="rounded-circle shadow-1-strong" width="150" height="150" />
+        </div>
+        <h5 className="mb-3">Maria Smantha</h5>
+        <h6 className="text-primary mb-3">Web Developer</h6>
+        <p className="px-xl-3">
+            <i className="fas fa-quote-left pe-2"></i>Lorem ipsum dolor sit amet, consectetur
+            adipisicing elit. Quod eos id officiis hic tenetur quae quaerat ad velit ab hic
+            tenetur.
+        </p>
+        <ul className="list-unstyled d-flex justify-content-center mb-0">
+            <li>
+            <i className="fas fa-star fa-sm text-warning"></i>
+            </li>
+            <li>
+            <i className="fas fa-star fa-sm text-warning"></i>
+            </li>
+            <li>
+            <i className="fas fa-star fa-sm text-warning"></i>
+            </li>
+            <li>
+            <i className="fas fa-star fa-sm text-warning"></i>
+            </li>
+            <li>
+            <i className="fas fa-star-half-alt fa-sm text-warning"></i>
+            </li>
+        </ul>
+        </div>
+        <div className="col-md-4 mb-5 mb-md-0">
+        <div className="d-flex justify-content-center mb-4">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(2).webp"
+            className="rounded-circle shadow-1-strong" width="150" height="150" />
+        </div>
+        <h5 className="mb-3">Lisa Cudrow</h5>
+        <h6 className="text-primary mb-3">Graphic Designer</h6>
+        <p className="px-xl-3">
+            <i className="fas fa-quote-left pe-2"></i>Ut enim ad minima veniam, quis nostrum
+            exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid commodi.
+        </p>
+        <ul className="list-unstyled d-flex justify-content-center mb-0">
+            <li>
+            <i className="fas fa-star fa-sm text-warning"></i>
+            </li>
+            <li>
+            <i className="fas fa-star fa-sm text-warning"></i>
+            </li>
+            <li>
+            <i className="fas fa-star fa-sm text-warning"></i>
+            </li>
+            <li>
+            <i className="fas fa-star fa-sm text-warning"></i>
+            </li>
+            <li>
+            <i className="fas fa-star fa-sm text-warning"></i>
+            </li>
+        </ul>
+        </div>
+        <div className="col-md-4 mb-0">
+        <div className="d-flex justify-content-center mb-4">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(9).webp"
+            className="rounded-circle shadow-1-strong" width="150" height="150" />
+        </div>
+        <h5 className="mb-3">John Smith</h5>
+        <h6 className="text-primary mb-3">Marketing Specialist</h6>
+        <p className="px-xl-3">
+            <i className="fas fa-quote-left pe-2"></i>At vero eos et accusamus et iusto odio
+            dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti.
+        </p>
+        <ul className="list-unstyled d-flex justify-content-center mb-0">
+            <li>
+            <i className="fas fa-star fa-sm text-warning"></i>
+            </li>
+            <li>
+            <i className="fas fa-star fa-sm text-warning"></i>
+            </li>
+            <li>
+            <i className="fas fa-star fa-sm text-warning"></i>
+            </li>
+            <li>
+            <i className="fas fa-star fa-sm text-warning"></i>
+            </li>
+            <li>
+            <i className="far fa-star fa-sm text-warning"></i>
+            </li>
+        </ul>
+        </div>
     </div>
 
+    </section>
 
     </>
     );
 }
  
 export default Reviews;
-
-
-// import React, { useState } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-// import {
-//   decrement,
-//   increment,
-//   incrementByAmount,
-//   incrementAsync,
-//   incrementIfOdd,
-//   selectCount,
-// } from './counterSlice';
-// import styles from './Counter.module.css';
-
-// export function Counter() {
-//   const count = useSelector(selectCount);
-//   const dispatch = useDispatch();
-//   const [incrementAmount, setIncrementAmount] = useState('2');
-
-//   const incrementValue = Number(incrementAmount) || 0;
-
-//   return (
-//     <div>
-//       <div className={styles.row}>
-//         <button
-//           className={styles.button}
-//           aria-label="Decrement value"
-//           onClick={() => dispatch(decrement())}
-//         >
-//           -
-//         </button>
-//         <span className={styles.value}>{count}</span>
-//         <button
-//           className={styles.button}
-//           aria-label="Increment value"
-//           onClick={() => dispatch(increment())}
-//         >
-//           +
-//         </button>
-//       </div>
-//       <div className={styles.row}>
-//         <input
-//           className={styles.textbox}
-//           aria-label="Set increment amount"
-//           value={incrementAmount}
-//           onChange={(e) => setIncrementAmount(e.target.value)}
-//         />
-//         <button
-//           className={styles.button}
-//           onClick={() => dispatch(incrementByAmount(incrementValue))}
-//         >
-//           Add Amount
-//         </button>
-//         <button
-//           className={styles.asyncButton}
-//           onClick={() => dispatch(incrementAsync(incrementValue))}
-//         >
-//           Add Async
-//         </button>
-//         <button
-//           className={styles.button}
-//           onClick={() => dispatch(incrementIfOdd(incrementValue))}
-//         >
-//           Add If Odd
-//         </button>
-//       </div>
-//     </div>
-//   );
-// }

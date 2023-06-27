@@ -2,7 +2,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-// Links to pages
+// Import functional components
+import Navbar from './components/Navbar';
+
+// Import pages
 import Blog from './pages/Blog'
 import Contacts from './pages/Contacts';
 import Landing from './pages/Landing';
@@ -20,6 +23,9 @@ import './assets/styles/app.css';
 function App() {
 
   return (
+    <>
+    <Navbar/>
+
     <Router>
       <Routes>
         <Route path="/" element={<Landing />} />
@@ -34,6 +40,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
+    </>
   );
 }
 

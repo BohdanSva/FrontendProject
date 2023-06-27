@@ -1,9 +1,6 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
 const Contacts = () => {
-    const navigate = useNavigate();
-    const navigateMenu = () => navigate('/menu');
     
     return (
     <>
@@ -12,81 +9,74 @@ const Contacts = () => {
     <h1 className="text-center mt-5 mb-5"> This is the contacts page </h1>
     </header>
 
-    {/* Submit button / Bootstrap style */}
-    <div className="d-grid gap-2 col-3 mx-auto mb-3">
-        <button onClick={navigateMenu} className="btn btn-outline-primary" type="submit">Back to menu</button>
+    {/* Contact Form / Material Design for Bootstrap */}
+    <section className="mb-4">
+
+    <h2 className="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
+    <p className="text-center w-responsive mx-auto mb-5">Do you have any questions? Please do not hesitate to contact us directly. Our team will come back to you within
+        a matter of hours to help you.</p>
+
+    <div className="row">
+        <div className="col-md-9 mb-md-0 mb-5">
+            <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+                <div className="row">
+                    <div className="col-md-6">
+                        <div className="md-form mb-0">
+                            <input type="text" id="name" name="name" className="form-control"/>
+                            <label htmlFor="name" className="">Your name</label>
+                        </div>
+                    </div>
+                    <div className="col-md-6">
+                        <div className="md-form mb-0">
+                            <input type="text" id="email" name="email" className="form-control"/>
+                            <label htmlFor="email" className="">Your email</label>
+                        </div>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-12">
+                        <div className="md-form mb-0">
+                            <input type="text" id="subject" name="subject" className="form-control"/>
+                            <label htmlFor="subject" className="">Subject</label>
+                        </div>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-12">
+                        <div className="md-form">
+                            <textarea type="text" id="message" name="message" rows="2" className="form-control md-textarea"></textarea>
+                            <label htmlFor="message">Your message</label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div className="text-center text-md-left">
+                <a className="btn btn-primary">Send</a>
+            </div>
+            <div className="status"></div>
+        </div>
+
+        <div className="col-md-3 text-center">
+            <ul className="list-unstyled mb-0">
+                <li><i className="fas fa-map-marker-alt fa-2x"></i>
+                    <p>San Francisco, CA 94126, USA</p>
+                </li>
+
+                <li><i className="fas fa-phone mt-4 fa-2x"></i>
+                    <p>+ 01 234 567 89</p>
+                </li>
+
+                <li><i className="fas fa-envelope mt-4 fa-2x"></i>
+                    <p>contact@mdbootstrap.com</p>
+                </li>
+            </ul>
+        </div>
     </div>
+
+    </section>
 
     </>
     );
 }
  
 export default Contacts;
-
-// import React, { useState } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-// import {
-//   decrement,
-//   increment,
-//   incrementByAmount,
-//   incrementAsync,
-//   incrementIfOdd,
-//   selectCount,
-// } from './counterSlice';
-// import styles from './Counter.module.css';
-
-// export function Counter() {
-//   const count = useSelector(selectCount);
-//   const dispatch = useDispatch();
-//   const [incrementAmount, setIncrementAmount] = useState('2');
-
-//   const incrementValue = Number(incrementAmount) || 0;
-
-//   return (
-//     <div>
-//       <div className={styles.row}>
-//         <button
-//           className={styles.button}
-//           aria-label="Decrement value"
-//           onClick={() => dispatch(decrement())}
-//         >
-//           -
-//         </button>
-//         <span className={styles.value}>{count}</span>
-//         <button
-//           className={styles.button}
-//           aria-label="Increment value"
-//           onClick={() => dispatch(increment())}
-//         >
-//           +
-//         </button>
-//       </div>
-//       <div className={styles.row}>
-//         <input
-//           className={styles.textbox}
-//           aria-label="Set increment amount"
-//           value={incrementAmount}
-//           onChange={(e) => setIncrementAmount(e.target.value)}
-//         />
-//         <button
-//           className={styles.button}
-//           onClick={() => dispatch(incrementByAmount(incrementValue))}
-//         >
-//           Add Amount
-//         </button>
-//         <button
-//           className={styles.asyncButton}
-//           onClick={() => dispatch(incrementAsync(incrementValue))}
-//         >
-//           Add Async
-//         </button>
-//         <button
-//           className={styles.button}
-//           onClick={() => dispatch(incrementIfOdd(incrementValue))}
-//         >
-//           Add If Odd
-//         </button>
-//       </div>
-//     </div>
-//   );
-// }
