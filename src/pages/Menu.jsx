@@ -15,6 +15,8 @@ const Menu = () => {
 
     return (
     <> 
+    <div style={{height: '2.5em'}}></div>
+
     {/* Component cards / Bootstrap */}
     <div className="row">
     <div className="col-sm-6 mb-3 mb-sm-0">
@@ -22,7 +24,7 @@ const Menu = () => {
         <img src={newsImage} className="card-img-top img-responsive" alt="news image"/>
         <div className="card-body">
             <h5 className="card-title">News Feed</h5>
-            <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>          
+            <p className="card-text">Read about our latest collaboration with Bill Gates and Nicky Minaj</p>          
             <a onClick={navigateNews} className="btn btn-primary">See latest news</a>
         </div>
         </div>
@@ -32,7 +34,7 @@ const Menu = () => {
         <img src={blogImage} className="card-img-top img-responsive" alt="blog image"/>
         <div className="card-body">
             <h5 className="card-title">Hotel Blog</h5>
-            <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <p className="card-text"> Written by our interns who are cheaper than AI </p>
             <a onClick={navigateBlog} className="btn btn-primary">Enter the blogosphere</a>
         </div>
         </div>
@@ -43,8 +45,8 @@ const Menu = () => {
     <div className="mb-3 mb-sm-0 mt-3">
         <div className="card">
         <div className="card-body">
-            <h1 className="card-title animate__animated animate__zoomInDown"> Hotel Pricing Engine </h1>
-            <p className="card-text"> Compare hotel prices by geolocation </p>
+            <h1 className="card-title animate__animated animate__bounceIn"> Hotel Analysis and Data </h1>
+            <p className="card-text"> Compare hotel prices by geolocation like a pro </p>
         </div>
         </div>
     </div>
@@ -56,7 +58,7 @@ const Menu = () => {
         <img src={searchImage} className="card-img-top img-responsive" alt="blog image"/>
         <div className="card-body">
             <h5 className="card-title">Search</h5>
-            <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <p className="card-text"> Black box experimental technology </p>
             <a onClick={navigateSearch} className="btn btn-primary"> Enter hotel search engine </a>
         </div>
         </div>
@@ -66,7 +68,7 @@ const Menu = () => {
         <img src={reviewsImage} className="card-img-top img-responsive" alt="blog image"/>
         <div className="card-body">
             <h5 className="card-title">Reviews</h5>
-            <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <p className="card-text"> Don't take our word for it, see the best reviews we could buy! </p>
             <a onClick={navigateReviews} className="btn btn-primary">Explore product reviews</a>
         </div>
         </div>

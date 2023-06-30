@@ -1,37 +1,16 @@
-// html, body {
-// 	margin: 0;
-// 	padding: 0;
-// 	height: 100%;
-// 	width: 100%;
-// }
+// This styling creates the parallax card effect
 
-// body {
-// 	background: #f5f5f5;
-// 	position: relative;
-// 	font-family: "Lato", sans-serif;
-// }
+a {
+	font-weight: 400 !important; // Override index.css
+}
 
-// .container {
-// 	// position: absolute;
-// 	// top: 50%;
-// 	left: 0;
-// 	right: 0;
-// 	// transform: translateY(-50%);
-// 	max-width: 720px;
-// 	margin: 0 auto;
-// 	padding: 20px;
-// }
-
-// .img-responsive {
-// 	display: block;
-// 	height: auto;
-// 	width: 100%;
-// 	max-width: 100%;
-// }
-
-// .rounded {
-// 	border-radius: 4px;
-// }
+.parallax .card-body { // in addition to Bootstrap styling of .card-body class, but only on the News page so only .parallax descendants
+	height: 11em;
+	overflow: hidden;
+}
+.parallax .card-text { // in addition to Bootstrap styling of .card-body class, but only on the News page so only .parallax descendants
+	text-align: justify;
+}
 
 .parallax {
 	display: block;

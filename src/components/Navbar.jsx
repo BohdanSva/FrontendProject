@@ -1,6 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logoImage from '../assets/favicons/favicon-32x32.png'
-import selectActivePage from './selectActivePage.js';
 
 const Navbar = () => {
 
@@ -8,33 +8,35 @@ const Navbar = () => {
     <>
 
     {/* Navbar / Bootstrap */}
-    {selectActivePage()}
     <nav className="navbar bg-body fixed-top" id="navbar">
     <div className="container-fluid">
 
-        <a className="navbar-brand" href="/menu">
+        <Link className="navbar-brand personalFont" to="/">
         <img src={logoImage} alt="Logo" width="30" height="24" className="d-inline-block align-text-top"/>
-        Hotel Search Engine and Data
-        </a>
-        
-        <ul class="nav me-auto navbar-nav d-inline-block">
+        Hotel Analysis and Data
+        </Link>
+
+        <ul className="nav me-auto navbar-nav d-inline-block">
             <li className="nav-item d-inline-block me-4">
-                <a className="nav-link" href="/menu">Home</a>
+                <Link className="nav-link" to="/">Home</Link>
             </li>
             <li className="nav-item d-inline-block me-4">
-                <a className="nav-link" href="/news">News</a>
+                <Link className="nav-link" to="/menu">Menu</Link>
             </li>
             <li className="nav-item d-inline-block me-4">
-                <a className="nav-link" href="/blog">Blog</a>
+                <Link className="nav-link" to="/news">News</Link>
             </li>
             <li className="nav-item d-inline-block me-4">
-                <a className="nav-link" href="/search">Hotel search engine</a>
+                <Link className="nav-link" to="/blog">Blog</Link>
             </li>
             <li className="nav-item d-inline-block me-4">
-                <a className="nav-link" href="/reviews">Reviews</a>
+                <Link className="nav-link" to="/search">Hotel Search Engine</Link>
             </li>
             <li className="nav-item d-inline-block me-4">
-                <a className="nav-link" href="/contacts">Contacts</a>
+                <Link className="nav-link" to="/reviews">Reviews</Link>
+            </li>
+            <li className="nav-item d-inline-block me-4">
+                <Link className="nav-link" to="/contacts">Contacts</Link>
             </li>
         </ul>
 
@@ -49,22 +51,25 @@ const Navbar = () => {
         <div className="offcanvas-body" style={{textAlign: 'left'}}>
             <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li className="nav-item">
-                <a className="nav-link" aria-current="page" href="/menu">Menu</a>
+                <Link className="nav-link" to="/">Home</Link>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="/news">News</a>
+                <Link className="nav-link" to="/menu">Menu</Link>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="/blog">Blog</a>
+                <Link className="nav-link" to="/news">News</Link>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="/search">Hotel search engine</a>
+                <Link className="nav-link" to="/blog">Blog</Link>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="/reviews">Reviews</a>
+                <Link className="nav-link" to="/search">Hotel Search Engine</Link>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="/contacts">Contacts</a>
+                <Link className="nav-link" to="/reviews">Reviews</Link>
+            </li>
+            <li className="nav-item">
+                <Link className="nav-link" to="/contacts">Contacts</Link>
             </li>
             </ul>
         </div>

@@ -1,3 +1,23 @@
+/* Best practice */
+/* Personalised fonts */
+.personalFont {
+  font-family: 'Baloo Tamma 2', cursive;
+}
+
+/* Hyperlinks */
+a {
+  color: inherit;
+  text-decoration: none;    
+}
+
+/* Buttons' styling */
+.btn *,
+button * {
+  pointer-events: null;
+  user-select: none;
+}
+
+/* Default */
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -67,3 +87,4 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+

@@ -67,7 +67,7 @@ const Contacts = () => {
                 </li>
 
                 <li><i className="fas fa-envelope mt-4 fa-2x"></i>
-                    <p>contact@mdbootstrap.com</p>
+                    <p>contact@notspam.com</p>
                 </li>
             </ul>
         </div>

@@ -1,20 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import ReviewHeader from '../components/ReviewHeader';
+import ReviewList from '../components/ReviewList';
+import ReviewStats from '../components/ReviewStats';
+import ReviewForm from '../components/ReviewForm';
+
+import ProductData from '../features/reviews/ProductData'; // Import data from file
+
+import '../assets/styles/reviews.css';
 
 const Reviews = () => {
+    const [review, setReview] = useState(ProductData); // Gets review data from file
 
+    const addReview = newReview => {
+        newReview.id = uuidv4();
+        setReview([newReview, ...review]);
+    };
+
+    const deleteFeedback = id => { // Confirmation on delete
+        if (window.confirm('Are you sure you want to delete?')) {
+          setReview(review.filter(item => item.id !== id));
+        }
+    };
+    
     return (
     <>
-    
-    <header>
-    <h1 className="text-center mt-5 mb-5"> This is the reviews page </h1>
-    </header>
-     
+        <ReviewHeader />
+        <div className="container">
+            <ReviewForm handleAdd={addReview}/>
+            <ReviewStats review={review} />
+            <ReviewList review={review} handleDelete={deleteFeedback}/>
+        </div>
+
+
+
     {/* Review Form / Material Design for Bootstrap */}
-    <section>
+    {/* <section>
         
     <div className="row d-flex justify-content-center">
         <div className="col-md-10 col-xl-8 text-center">
-        <h3 className="mb-4">Testimonials</h3>
+        <h3 className="mb-4">Read what our customers say</h3>
         <p className="mb-4 pb-2 mb-md-5 pb-md-0">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet
             numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum
@@ -114,9 +139,9 @@ const Reviews = () => {
         </div>
     </div>
 
-    </section>
+    </section>*/}
 
-    </>
+    </> 
     );
 }
  

@@ -104,6 +104,16 @@ const Search = () => {
     catch (error) {console.log(error);}
   }
 
+  // Crete check-in and check-out suggested dates 1 month from now assuming a 7-day stay
+  useEffect(() => {
+    const checkInDate = new Date();
+    const checkOutDate = new Date();
+    checkInDate.setTime(checkInDate.getTime() + 86400 * 1000 * 30); // 86,400 ms per day
+    checkOutDate.setTime(checkInDate.getTime() + 86400 * 1000 * 7); // 7-day stay
+    dispatch(setCheckin(checkInDate.toLocaleDateString("en-GB"))); // reformat to DD/MM/YYYY 
+    dispatch(setCheckout(checkOutDate.toLocaleDateString("en-GB")));
+  }, []);
+
   // Initialize API - get hotel rates
   const getHotelRates = async (hotel) => {   
     try {

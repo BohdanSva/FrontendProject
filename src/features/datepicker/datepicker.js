@@ -24,6 +24,5 @@ const Datepicker = () => {
         weekNumbers: true,
     });
 
-
 };
 export default Datepicker;
