@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   currentPage: 1, // Set starting page to 1
+  blog: [],
 };
 
 export const newsSlice = createSlice({
@@ -12,7 +13,7 @@ export const newsSlice = createSlice({
       state.items = action.payload;
     },
     setBlog: (state, action) => {
-      state.blog = action.payload;
+      state.blog = [...state.blog, ...action.payload]; // You're merging the two arrays - the old state and the new data being loaded from API into the state
     },
     setScroll: (state, action) => {
       state.scroll = action.payload;

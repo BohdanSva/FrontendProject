@@ -1,44 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { setScroll, selectScroll } from '../features/news/newsSlice';
 import '../assets/styles/textCycle.css';
 import '../assets/styles/parallaxItems.css';
+
 import phoneFrame from '../assets/images/landing/iphoneFrame.png';
-import hotelImage from '../assets/images/landing/hotel.png'; // The first image to be loaded within the frame, then controlled by parallaxItems.js
-
-
-
-import chestImage from '../assets/images/landing/chest.png';
+import hotelImage from '../assets/images/landing/hotel.png'; 
 import geolocationImage from '../assets/images/landing/geolocation.jpg';
 import cityImage from '../assets/images/landing/city.png';
 import searchImage from '../assets/images/landing/search.png';
+import chestImage from '../assets/images/landing/chest.png';
 
 $(document).ready(function() {
     // Load images/text at exact scroll location
     $(window).on("scroll", function() {
       // console.log($(this).scrollTop()) // Check exact scroll pixel location
-
-    // Image control
-      if( ($(this).scrollTop() > 400) && ($(this).scrollTop() < 799) ){
-        // set to second image
-        $(".parallaxItem img").attr("src",geolocationImage);
-      } 
-      else if( ($(this).scrollTop() > 800) && ($(this).scrollTop() < 1199) ) {
-        // change image when scrolled at pixel number #
-        $(".parallaxItem img").attr("src",cityImage);
-      }
-      else if( ($(this).scrollTop() > 1200) && ($(this).scrollTop() < 1599) ) {
-        // change image when scrolled at pixel number #
-        $(".parallaxItem img").attr("src",searchImage);
-      }
-      else if( ($(this).scrollTop() > 1600) && ($(this).scrollTop() < 1999) ) {
-        // change image when scrolled at pixel number #
-        $(".parallaxItem img").attr("src",chestImage);
-      }
-      else {
-        // back to the first image - that is coded into the HTML DOM in first place
-        $(".parallaxItem img").attr("src",hotelImage);
-      }
-
 
     //   Text control
       if(($(this).scrollTop() > 10) && ($(this).scrollTop() < 399)){
@@ -84,12 +61,47 @@ $(document).ready(function() {
     })
 })
 
-
-
-
 const Landing = () => {
+  // Hooks definitions
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const handleClick = () => navigate('/menu');
+
+    let parallaxImage = hotelImage;
+    const scrollLocation = useSelector(selectScroll);
+
+  // Identify scroll position and save it into the newsSlice store as "scroll"
+  const rememberScroll = () => {
+    const scrollPosition = window.scrollY;
+    dispatch(setScroll(scrollPosition));
+    // console.log(scrollPosition); // Console log scroll position
+  };
+  useEffect(() => {
+    rememberScroll();
+    window.addEventListener("scroll", rememberScroll);
+    return () => {
+      window.removeEventListener("scroll", rememberScroll);
+    };
+  }, []);
+
+  // Swap images and text as the user scrolls down
+  switch (true) {
+    case (scrollLocation>0&&scrollLocation<399):
+      parallaxImage = hotelImage;
+      break;
+    case (scrollLocation>400&&scrollLocation<799):
+      parallaxImage = geolocationImage;
+      break;
+    case (scrollLocation>800&&scrollLocation<1199):
+      parallaxImage = cityImage;
+      break;
+    case (scrollLocation>1200&&scrollLocation<1599):
+      parallaxImage = searchImage;
+      break;
+    case (scrollLocation>1600):
+      parallaxImage = chestImage;
+      break;
+  };
 
     return (
         <>
@@ -109,26 +121,22 @@ const Landing = () => {
       
         {/* Parallax scroll HTML, supplemented by parallaxItems.js*/}
         <div className="h-100 d-flex align-items-center justify-content-center">
-            {/* <div style={{marginTop: '12em', marginBottom: '1.5em', position: 'relative'}}></div> */}
-
             <div className="container text-center h-100 d-flex align-items-center justify-content-center">
                 <div className="col-3 parallaxText left animate__animated">
                     <h2></h2>
                 </div>
-
                 <div className="col-3 parallaxText right animate__animated">
                     <h2></h2>
                 </div>
-
                 <div className="col-3 d-flex align-items-center justify-content-center">
                     <img src={phoneFrame} className="phoneFrame"/>  
                     <div className="parallaxItem center-block" style={{position: 'fixed', top: '42%'}}>
-                        <img src={hotelImage}/> 
+                        <img src={parallaxImage}/>
                     </div>
                 </div>
             </div>
         
-            {/* // Filler content so you can scroll */}
+            {/* // Filler content controlling website height */}
             <div className="filler"></div> 
             <div style={{minHeight: '955px', marginBottom: '2000px', position: 'relative'}}></div>
         </div>

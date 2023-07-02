@@ -3,20 +3,20 @@ import { Link } from 'react-router-dom';
 import logoImage from '../assets/favicons/favicon-32x32.png'
 
 const Navbar = () => {
-
+    
     return ( 
     <>
 
     {/* Navbar / Bootstrap */}
     <nav className="navbar bg-body fixed-top" id="navbar">
-    <div className="container-fluid">
+    <div className="container-fluid" style={{borderBottomStyle: 'groove' , borderBottomColor: '#3215b4', borderBottomWidth: `1px`}}>
 
         <Link className="navbar-brand personalFont" to="/">
         <img src={logoImage} alt="Logo" width="30" height="24" className="d-inline-block align-text-top"/>
         Hotel Analysis and Data
         </Link>
 
-        <ul className="nav me-auto navbar-nav d-inline-block">
+        <ul className="nav me-auto navbar-nav d-inline-block">            
             <li className="nav-item d-inline-block me-4">
                 <Link className="nav-link" to="/">Home</Link>
             </li>

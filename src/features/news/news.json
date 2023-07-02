@@ -1,5 +1,5 @@
-{ 
-  "1" : {
+[
+  {
     "id"                : "1",
     "mainImageURL"      : "/src/assets/images/news/news1.jpg",
     "mainImageAlt"      : "One does not simply use a lame placeholder graphic!",
@@ -10,7 +10,7 @@
     "journoName"        : "Claas Relotius",
     "journoAbout"       : "I am Claas, an award-winning hotel journalist and reporter",
 
-    "articleDate"       : "6/11/2022",
+    "articleDate"       : "2023-06-28 00:00:00",
     "textBlock1"        : "Aenean eleifend ante maecenas pulvinar montes lorem et pede dis dolor pretium donec dictum. Vici consequat justo enim. Venenatis eget adipiscing luctus lorem. Adipiscing veni amet luctus enim sem libero tellus viverra venenatis aliquam. Commodo natoque quam pulvinar elit. Eget aenean tellus venenatis. Donec odio tempus. Felis arcu pretium metus nullam quam aenean sociis quis sem neque vici libero. Venenatis nullam fringilla pretium magnis aliquam nunc vulputate integer augue ultricies cras. Eget viverra feugiat cras ut. Sit natoque montes tempus ligula eget vitae pede rhoncus maecenas consectetuer commodo condimentum aenean.",
     "subheading"        : "Sub-heading",
     "textBlock2"        : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
@@ -20,7 +20,7 @@
     "articleTags"       : ["J.R.R. Tolkien", "Paris Hilton", "Hotels", "Sauron", "Travel", "Marketing", "Management", "Business",
                             "MBO", "Expansion", "Change", "Net Zero", "Hotel Chains"]
   },
-  "2" : {
+  {
     "id"                : "2",
     "mainImageURL"      : "/src/assets/images/news/news1.jpg",
     "mainImageAlt"      : "One does not simply use a lame placeholder graphic!",
@@ -31,7 +31,7 @@
     "journoName"        : "Claas Relotius",
     "journoAbout"       : "I am Claas, an award-winning hotel journalist and reporter",
 
-    "articleDate"       : "1/4/2023",
+    "articleDate"       : "2023-04-01 00:00:00",
     "textBlock1"        : "Aenean eleifend ante maecenas pulvinar montes lorem et pede dis dolor pretium donec dictum. Vici consequat justo enim. Venenatis eget adipiscing luctus lorem. Adipiscing veni amet luctus enim sem libero tellus viverra venenatis aliquam. Commodo natoque quam pulvinar elit. Eget aenean tellus venenatis. Donec odio tempus. Felis arcu pretium metus nullam quam aenean sociis quis sem neque vici libero. Venenatis nullam fringilla pretium magnis aliquam nunc vulputate integer augue ultricies cras. Eget viverra feugiat cras ut. Sit natoque montes tempus ligula eget vitae pede rhoncus maecenas consectetuer commodo condimentum aenean.",
     "subheading"        : "Sub-heading",
     "textBlock2"        : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
@@ -41,7 +41,7 @@
     "articleTags"       : ["J.R.R. Tolkien", "Paris Hilton", "Hotels", "Sauron", "Travel", "Marketing", "Management", "Business",
                             "MBO", "Expansion", "Change", "Net Zero", "Hotel Chains"]
   },
-  "3" : {
+  {
     "id"                : "3",
     "mainImageURL"      : "/src/assets/images/news/news1.jpg",
     "mainImageAlt"      : "One does not simply use a lame placeholder graphic!",
@@ -52,7 +52,7 @@
     "journoName"        : "Claas Relotius",
     "journoAbout"       : "I am Claas, an award-winning hotel journalist and reporter",
 
-    "articleDate"       : "6/6/2023",
+    "articleDate"       : "2023-06-06 00:00:00",
     "textBlock1"        : "Aenean eleifend ante maecenas pulvinar montes lorem et pede dis dolor pretium donec dictum. Vici consequat justo enim. Venenatis eget adipiscing luctus lorem. Adipiscing veni amet luctus enim sem libero tellus viverra venenatis aliquam. Commodo natoque quam pulvinar elit. Eget aenean tellus venenatis. Donec odio tempus. Felis arcu pretium metus nullam quam aenean sociis quis sem neque vici libero. Venenatis nullam fringilla pretium magnis aliquam nunc vulputate integer augue ultricies cras. Eget viverra feugiat cras ut. Sit natoque montes tempus ligula eget vitae pede rhoncus maecenas consectetuer commodo condimentum aenean.",
     "subheading"        : "Sub-heading",
     "textBlock2"        : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
@@ -62,7 +62,7 @@
     "articleTags"       : ["J.R.R. Tolkien", "Paris Hilton", "Hotels", "Sauron", "Travel", "Marketing", "Management", "Business",
                             "MBO", "Expansion", "Change", "Net Zero", "Hotel Chains"]
   },
-  "4" : {
+  {
     "id"                : "4",
     "mainImageURL"      : "/src/assets/images/news/news1.jpg",
     "mainImageAlt"      : "One does not simply use a lame placeholder graphic!",
@@ -73,7 +73,7 @@
     "journoName"        : "Claas Relotius",
     "journoAbout"       : "I am Claas, an award-winning hotel journalist and reporter",
 
-    "articleDate"       : "28/6/2023",
+    "articleDate"       : "2022-06-30 00:00:00",
     "textBlock1"        : "Aenean eleifend ante maecenas pulvinar montes lorem et pede dis dolor pretium donec dictum. Vici consequat justo enim. Venenatis eget adipiscing luctus lorem. Adipiscing veni amet luctus enim sem libero tellus viverra venenatis aliquam. Commodo natoque quam pulvinar elit. Eget aenean tellus venenatis. Donec odio tempus. Felis arcu pretium metus nullam quam aenean sociis quis sem neque vici libero. Venenatis nullam fringilla pretium magnis aliquam nunc vulputate integer augue ultricies cras. Eget viverra feugiat cras ut. Sit natoque montes tempus ligula eget vitae pede rhoncus maecenas consectetuer commodo condimentum aenean.",
     "subheading"        : "Sub-heading",
     "textBlock2"        : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
@@ -83,4 +83,4 @@
     "articleTags"       : ["J.R.R. Tolkien", "Paris Hilton", "Hotels", "Sauron", "Travel", "Marketing", "Management", "Business",
                             "MBO", "Expansion", "Change", "Net Zero", "Hotel Chains"]
   }
-}
+]

@@ -1,5 +1,9 @@
-/* Loader tyling */
+/* Margins */
+.blogItem {
+    margin-top: 100px;
+}
 
+/* Loader styling */
 .loader {
     display: inline-block;
     position: relative;

@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {
   setQuery, setUnits, setSlider, setLocation, setHotelToken, setHotelInfo, setHotelRates, setCheckin, setCheckout,
   selectQuery, selectUnits, selectSlider, selectCheckin, selectCheckout, selectLocation, selectHotelToken, selectHotelInfo, 
-  selectHotelRates } 
+  setLoadingProgress, reset } 
   from "../features/search/searchSlice";
 import Datepicker from '../features/datepicker/datepicker';
 
 const Search = () => {
   // Hooks definitions
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const query = useSelector(selectQuery);
   let units = useSelector(selectUnits);
   const sliderRange = useSelector(selectSlider);
@@ -19,7 +21,11 @@ const Search = () => {
   const location = useSelector(selectLocation);
   const hotelToken = useSelector(selectHotelToken);
   const hotelInfo = useSelector(selectHotelInfo);
-  const hotelRates = useSelector(selectHotelRates);
+
+  // Reset state before every search at page (re-)load 
+  useEffect(()=> {
+    dispatch(reset()); // Resets the newsSlice to initial state
+  }, []) // Only once on page initialisation
 
   // Save every user search input into the store
   const onSearchInput = (keystroke) => {
@@ -32,16 +38,16 @@ const Search = () => {
     dispatch(setUnits(radio.target.value)); // Measurement system units saved into "units"
   }
   const onCheckin = (event) => {
-    dispatch(setCheckin(event.target.value)); // Selected checkin date saved into "checkin"
+    dispatch(setCheckin(event.target.value)); // Selected checkin date saved into "checkin" as a string!
   }
   const onCheckout = (event) => {
-    dispatch(setCheckout(event.target.value)); // Selected checkout date saved into "checkout"
+    dispatch(setCheckout(event.target.value)); // Selected checkout date saved into "checkout" as a string!
   }
 
-  // Launch API calls after user clicks send
+  // Launch API calls after user clicks "Submit search"
   const sendAddress = (click) => {
     click.preventDefault(); // Do not reload page on click / sending data to API
-    getLocation(query)
+    getLocation(query) // Get location data first
   }
   useEffect(()=>{
     if(location){
@@ -51,6 +57,8 @@ const Search = () => {
   useEffect(()=>{ // getHotelRates runs after we have hotel info
     if(hotelInfo){
       getHotelRates();
+      const redirectPath = '/loading'; 
+      navigate(redirectPath); // Send user to the Loading page while data is received
     }
   }, [hotelInfo])
 
@@ -104,7 +112,7 @@ const Search = () => {
     catch (error) {console.log(error);}
   }
 
-  // Crete check-in and check-out suggested dates 1 month from now assuming a 7-day stay
+  // Crete check-in and check-out suggested dates 1 month from now assuming a 7-day stay, in case user doesn't click on datepicker
   useEffect(() => {
     const checkInDate = new Date();
     const checkOutDate = new Date();
@@ -112,20 +120,23 @@ const Search = () => {
     checkOutDate.setTime(checkInDate.getTime() + 86400 * 1000 * 7); // 7-day stay
     dispatch(setCheckin(checkInDate.toLocaleDateString("en-GB"))); // reformat to DD/MM/YYYY 
     dispatch(setCheckout(checkOutDate.toLocaleDateString("en-GB")));
-  }, []);
+  }, []); // Create only once on initialization
 
   // Initialize API - get hotel rates
   const getHotelRates = async (hotel) => {   
     try {
     for (let hotel in hotelInfo.data) { // Loop through every hotel in hotelInfo.data array
+    dispatch(setLoadingProgress());
     const hotelRatesURL = `https://test.api.amadeus.com/v3/shopping/hotel-offers?hotelIds=${hotelInfo.data[hotel].hotelId}&adults=1&checkInDate=${checkin}&checkOutDate=${checkout}&roomQuantity=1&paymentPolicy=NONE&bestRateOnly=true`;
-    const {data} = await axios.request({
+    const { data } = await axios.request({
       url: hotelRatesURL,
       method: "get",
       headers: {
         "authorization": `Bearer ${hotelToken}`,
       },
-    });
+      count: 0,
+    })
+
     console.log(data);
     if (data.data.length > 0) { // Only save hotels with pricing into store
       dispatch(setHotelRates(data.data)); // Dispatches action setHotelRates, so data = "hotelRates" in the store
@@ -137,9 +148,9 @@ const Search = () => {
 
   return (
     <>
-    
+
     <header>
-    <h1 className="text-center mt-5 mb-5"> This is the search page </h1>
+    <h1 className="text-center mt-5 mb-5"> Hotel Search Engine </h1>
     </header>
 
     <section aria-label="User input form">
@@ -172,19 +183,19 @@ const Search = () => {
 
       {/* Slider - Bootstrap */}
       <label htmlFor="customRange1" className="form-label mt-1"> Search within the range of {sliderRange} {units=="KM" ? "kilometers" : "miles"} </label>
-      <input type="range" className="form-range" onChange={onSliderInput} min="0" max="100" defaultValue="50" step="1"/>
+        <input type="range" className="form-range" onChange={onSliderInput} min="0" max="100" defaultValue="50" step="1"/>
 
       {Datepicker()}
       <div className="container text-center">
       <div className="row">
       <div className="col mb-3">
-        <label htmlFor="exampleInputEmail1" className="form-label">Check-in</label>
+        <label htmlFor="exampleInputDate" className="form-label">Check-in</label>
         <div className="resetDate">
           <input type="text" onInput={onCheckin} placeholder="From" data-input/>
         </div>
       </div>
       <div className="col mb-3">
-        <label htmlFor="exampleInputEmail1" className="form-label">Check-out</label>
+        <label htmlFor="exampleInputDate" className="form-label">Check-out</label>
         <div className="resetDate">
           <input type="text" onInput={onCheckout} placeholder="To" data-input/>
         </div>
@@ -194,7 +205,9 @@ const Search = () => {
 
       {/* Submit button - Bootstrap */}
       <div className="d-grid gap-2 col-3 mx-auto mt-5 mb-3">
+        
         <button onClick={sendAddress} className="btn btn-primary" type="submit">Submit search</button>
+        
       </div>
       
     </form>

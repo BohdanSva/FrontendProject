@@ -1,4 +1,4 @@
-/* Best practice */
+/* Best practice
 /* Personalised fonts */
 .personalFont {
   font-family: 'Baloo Tamma 2', cursive;
@@ -87,4 +87,5 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
 

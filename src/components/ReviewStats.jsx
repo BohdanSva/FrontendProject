@@ -6,11 +6,10 @@ const ReviewStats = ({ review }) => {   // Calculate the average rating
         review.reduce((accumulator, current) => { // Reduce calculates the average of all rating values
         return accumulator + current.rating;
         }, 0) / review.length;
-    average = average.toFixed(1);
+    average = average.toFixed(1); // Round to 1 decimal place
 
 return (
     <div className="feedback-stats">
-        ProductReviewStats
         <h4>{review.length} Product Reviews</h4>
         <h4>Average Product Rating: {isNaN(average) ? 0 : average}</h4>
     </div>

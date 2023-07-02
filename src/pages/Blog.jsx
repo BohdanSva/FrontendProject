@@ -17,14 +17,14 @@ const Blog = () => {
     // Set variables before initialization
     const pageLimit = 10; // Limit to be set depending on API
 
-    // Initialize API - get blog data on page load
-    const getBlog = useCallback( async (page, pageLimit) => {
-        console.log("getBlog run");
-        const blogURL = `https://catfact.ninja/facts?page=${page}&limit=${pageLimit}`;
+    // Initialize API - get blog data on launch, and then as current page changes
+    const getBlog = useCallback( async () => {
+        showLoader();
+        const blogURL = `https://catfact.ninja/facts?page=${currentPage}&limit=${pageLimit}`;
         try {
         const {data} = await axios.get(blogURL);
-        console.log(data);
-        dispatch(setBlog(data)); // Saves the API data to the store as "blog"
+        dispatch(setBlog(data.data)); // Saves the API data to the store as "blog"
+        hideLoader();
         } 
         catch (error) {console.log(error);}
     }, [currentPage]);
@@ -32,22 +32,19 @@ const Blog = () => {
         getBlog();
     }, [getBlog]);
 
-    // const getBlog = async (page, pageLimit) => {
-    //     const API_URL = `https://catfact.ninja/facts?page=${page}&limit=${pageLimit}`;
-    //     const response = await fetch(API_URL);
-    //     // handle 404 
-    //     if (!response.ok) {
-    //         throw new Error(`An error occurred: ${response.status}`);
-    //     }
-    //     return await response.json();
-    // }
-
-
     // Identify scroll position and save it into the store as "scroll"
     const rememberScroll = () => {
-        const scrollPosition = window.scrollY;
+        const scrollPosition = window.scrollY; // Offset from the top
         dispatch(setScroll(scrollPosition));
-        console.log(scrollPosition); // Console log scroll position
+        // console.log(scrollPosition); // Console log scroll position
+        
+        // Calculate current page number
+        const viewportHeight = document.documentElement.clientHeight;
+        const renderedDOMHeight = document.documentElement.scrollHeight;
+        if ((scrollPosition + viewportHeight) > (renderedDOMHeight - viewportHeight)) { // If scroll reached bottom of page
+        dispatch(setCurrentPage(currentPage++)); // Move the current page to the next # 
+        // loadBlog(currentPage, pageLimit); // Re-render the DOM based on new current page
+    }
     };
     useEffect(() => {
         rememberScroll();
@@ -65,38 +62,7 @@ const Blog = () => {
         dispatch(setLoader("show"));
     };
 
-    // Build the DOM - as page loads
-    const showBlog = (item) => {
-        item.data.map((item, index) => {
-            return <div class="blogItem" key={index}>{item.fact}</div>; 
-        });
-    }
-
-    // Load blog items and show loader while waiting for data
-    const loadBlog = async (page, pageLimit) => {
-        showLoader(); // Show the loading animation
-        try {
-                // call the API to get data
-                const response = await getBlog(page, pageLimit);
-                console.log(response);
-                showBlog(response.data); // Call DOM-building function
-
-        } catch (error) {
-            console.log(error.message);
-        } finally {
-            hideLoader();
-        }
-    };
-
-    // Calculate current page number
-    const viewportHeight = document.documentElement.clientHeight;
-    const renderedDOMHeight = document.documentElement.scrollHeight;
-    if (viewportHeight + renderedDOMHeight >= scrollLocation - 5) { // If scroll reached bottom of page
-        dispatch(setCurrentPage(currentPage++)); // Move the current page to the next # 
-        loadBlog(currentPage, pageLimit); // Re-render the DOM based on new current page
-    }
-
-    loadBlog(currentPage, pageLimit);
+    if (!blog) return showLoader() // If there is no data, show the loader
 
     return (
     <>
@@ -107,7 +73,9 @@ const Blog = () => {
 
     <div className="container">
 
-        <div className="blogClass"> {showBlog()} </div>
+        <div className="blogClass"> {blog.map((item, index)=>{
+            return <div className="blogItem" key={index}>{item.fact}</div>; 
+        })} </div>
 
         <div className={`loader ${loaderState}`}>
             <div></div>

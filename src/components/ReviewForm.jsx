@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import ReviewCard from './ReviewCard';
-import RatingButtons from './RatingButtons';
 import RatingSelect from './RatingSelect';
 
 const ReviewForm = ({handleAdd}) => { // Adds input box for the user to add a new review
@@ -39,16 +38,17 @@ return (
     // Wrapped inside ReviewCard user interface
     <ReviewCard>
         <form onSubmit={handleSubmit}>
-        <h2>How would you rate this product?</h2>
+        <h2>How would you rate this site?</h2>
         <RatingSelect select={rating => setRating(rating)} />
-        <div className="input-group">
+        <div className="reviewInput">
             <input 
+            id="reviewInputBox"
             onChange={handleTextChange} 
             type="text" 
             placeholder="Write a review" 
             value={text} 
             />
-            <button type="submit" isDisabled={btnDisabled}> Send </button>
+            <button type="submit" className="btn btn-primary" disabled={btnDisabled}> Send </button>
         </div>
         {message && <div className="message">{message}</div>}
       </form>

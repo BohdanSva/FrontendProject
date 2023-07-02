@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import '../assets/styles/newsItem.css';
@@ -7,10 +7,9 @@ import NotFound from './NotFound';
 
 const newsItem = () => {
     // Hooks definitions
-    const newsItems = useSelector(selectNewsItems);
-    
-    // newsSlug path configuration
-    const { newsSlug } = useParams();
+    const newsItems = useSelector(selectNewsItems); // This is already sorted data taken from the store
+    const { newsSlug } = useParams(); // newsSlug path configuration
+
     if (!newsItems[newsSlug]) return <NotFound/>;
 
     return ( 
@@ -137,25 +136,3 @@ const newsItem = () => {
 }
  
 export default newsItem
-
-
-
-// const [newsArticleId, setNewsArticleId] = React.useState(null);
-// const { newsSlug } = useParams();
-
-// React.useEffect(() => {
-//   fetch(`https://jsonplaceholder.typicode.com/posts/${newsSlug}`)
-//     .then((res) => res.json())
-//     .then((data) => setNewsArticleId(data));
-// }, [newsSlug]);
-
-// if (!newsArticleId) return null;
-
-// return (
-//     <>
-//     <p>Test</p>
-//     <h1>{newsArticleId.title}</h1>
-//     <p>{newsArticleId.body}</p>
-//     <p>{newsItems[newsSlug][1].headline}</p>
-//     </>
-// )

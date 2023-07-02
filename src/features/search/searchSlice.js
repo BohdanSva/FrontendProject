@@ -4,6 +4,7 @@ const initialState = {
   units: "KM",
   slider: 50,
   hotelRates: [], // Must be defined at launch, otherwise the spread operator below would cause it to crash
+  loading: 0,
 };
 
 // Create the "search" slice
@@ -39,12 +40,17 @@ export const searchSlice = createSlice({
     setHotelRates: (state, action) => {
       state.hotelRates = [...state.hotelRates, action.payload]
     },
+    setLoadingProgress: (state) => {
+      state.loading = state.loading + 1; 
+    },
+    reset: () => initialState,
   },
 });
 
 // Export of reducers
 export const {
-  setQuery, setUnits, setSlider, setCheckin, setCheckout, setLocation, setHotelToken, setHotelInfo, setHotelRates
+  setQuery, setUnits, setSlider, setCheckin, setCheckout, setLocation, setHotelToken, setHotelInfo, setHotelRates, setLoadingProgress,
+  reset,
  } = searchSlice.actions;
 
 // Export of selector functions // allows us to select a value from the state
@@ -57,5 +63,6 @@ export const selectLocation = (state) => state.search.location;
 export const selectHotelToken = (state) => state.search.hotelToken;
 export const selectHotelInfo = (state) => state.search.hotelInfo;
 export const selectHotelRates = (state) => state.search.hotelRates;
+export const selectLoadingProgress = (state) => state.search.loading;
 
 export default searchSlice.reducer;
