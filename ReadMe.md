@@ -18,9 +18,12 @@ Included in the project folder are:
 
 - [x] "Page" component JSX files
     1. Landing page
-    2. Menu
-    3. News 
+       
+    3. Menu
+       
+    4. News 
         - Summary of news data loaded from a JSON file
+          
         4. News item
             - Generates "page" for the user-selected news item
     5. Blog
