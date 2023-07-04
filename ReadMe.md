@@ -1,6 +1,6 @@
 # Frontend Project - Hotel Analysis and Data
 
-## This project intends create a fully functioning React Toolkit application to check and compare hotel prices within a radius of a user-selected location across the globe
+## This project intends to create a fully functioning React Toolkit application to check and compare hotel prices within a radius of a user-selected location across the globe
 
 ---
 
@@ -20,7 +20,7 @@ Included in the project folder are:
 
     1. Landing page
 
-    2. Menu
+    2. Mengit u
 
     3. News 
         - Summary of news data loaded from a JSON file
