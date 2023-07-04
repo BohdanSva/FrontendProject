@@ -1,0 +1,154 @@
+/* Phone frame */
+/* Mobile first */
+@media (max-width: 600px) {	
+  .phoneFrame {
+    padding-top: 15%;
+    max-width: 65%;
+  }
+}
+.phoneFrame {
+  position: fixed;
+  top: 22%;
+  margin-top: 0%;
+  width: auto;
+}
+
+/* Parallax images and text */
+/* Mobile first */
+@media (max-width: 600px) {	
+  .parallaxText {
+    display: none;
+  }
+  #enterButton {
+    margin-bottom: 0%;
+  }
+}
+
+#enterButton {
+  margin-bottom: 35%;
+}
+
+.parallaxItem img {
+  height: 200px;
+  width: 200px;
+}
+
+.filler {
+  background: transparent;
+  height: 2000px;
+}
+
+.parallaxText {
+  position: fixed;
+  color: rgb(50, 21, 180);
+  top: 45%;
+}
+
+.left {
+  left: 10%;
+}
+
+.right {
+  right: 10%;
+}
+
+/* Text cycle */
+/* Mobile first */
+@media (min-width: 0px) {	
+  .cycleBox {
+      position: fixed;
+      top: 15%;
+      left: 16%;
+      font-size: 1.5em;
+  }
+}
+@media (min-width: 600px) {	
+.cycleBox {
+  position: fixed;
+  top: 12%;
+  left: 35%;
+  font-size: 3.5em;
+  display: flex;
+  /* transform: translateX(-4em); */
+  /* top: 50%; */
+  /* transform: translateY(-50%); */
+  /* margin-left: 50px; */
+  /* width: calc(100%-50px); */
+  }
+}
+
+.word
+{
+display: inline-block;
+white-space: nowrap; 
+color: rgb(50, 21, 180);
+font-weight: bold;
+margin-left: 10px;
+}
+
+.word span
+{
+position: absolute;
+top: 0;
+overflow: hidden;
+animation: animate 10s linear infinite;
+opacity: 0;
+}
+
+.afterCycle
+{
+display: inline-block;
+margin-left: 400px;
+}
+
+@keyframes animate {
+  0% { 
+  opacity: 0;
+  transform: translateY(-50px);
+  }
+
+  2% { 
+  opacity: 1;
+  transform: translateY(0px);
+  }
+
+  18% { 
+  opacity: 1;
+  transform: translateY(0px);
+  }
+
+  20% { 
+  opacity: 0;
+  transform: translateY(50px);
+  }
+
+  100% { 
+  opacity: 0;
+  transform: translateY(50px);
+  }
+}
+
+.word span:nth-child(1)
+{
+animation-delay: 0s;
+}
+
+.word span:nth-child(2)
+{
+animation-delay: 2s;
+}
+
+.word span:nth-child(3)
+{
+animation-delay: 4s;
+}
+
+.word span:nth-child(4)
+{
+animation-delay: 6s;
+}
+
+.word span:nth-child(5)
+{
+animation-delay: 8s;
+}

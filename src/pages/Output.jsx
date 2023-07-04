@@ -38,33 +38,31 @@ const Output = () => {
         {checkoutDate.toLocaleDateString("en-GB", {dateStyle: "long"})}</p>
 
     <div className="output-table">
-        <table>
-            <thead>
+        <table className="table align-middle table-responsive">
+            <thead className='align-middle'>
                 <tr>
-                    <th>ID</th>
-                    <th>Hotel name</th>
-                    <th>City</th>
-                    <th>Address</th>
-                    <th>Total price per stay</th>
-                    <th>Average price per day</th>
-                    <th>Currency</th>
-                    <th>Number of beds</th>
-                    <th>Bed type</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Hotel name</th>
+                    <th scope="col">City</th>
+                    <th scope="col">Total price</th>
+                    <th scope="col">Average price / day</th>
+                    <th scope="col">Currency</th>
+                    <th scope="col">Number of beds</th>
+                    <th scope="col">Bed type</th>
                 </tr>
             </thead>
             <tbody>
             {hotelRates.map((item, key) => {
                 return (               
                     <tr key={key}>
-                        <td>{key+1}</td>
-                        <td>{item[0].hotel.name}</td>
-                        <td>{item[0].hotel.cityCode}</td>
-                        <td>Address</td>
-                        <td>{Math.floor(item[0].offers[0].price.total)}</td>
-                        <td>{Math.floor(item[0].offers[0].price.total/days)}</td>
-                        <td>{item[0].offers[0].price.currency}</td>
-                        <td>{item[0].offers[0].room.typeEstimated.beds}</td>
-                        <td>{item[0].offers[0].room.typeEstimated.bedType}</td>
+                        <td scope="row">{key+1}</td>
+                        <td scope="row">{item[0].hotel.name}</td>
+                        <td scope="row">{item[0].hotel.cityCode}</td>
+                        <td scope="row">{Math.floor(item[0].offers[0].price.total)}</td>
+                        <td scope="row">{Math.floor(item[0].offers[0].price.total/days)}</td>
+                        <td scope="row">{item[0].offers[0].price.currency}</td>
+                        <td scope="row">{item[0].offers[0].room.typeEstimated.beds}</td>
+                        <td scope="row">{item[0].offers[0].room.typeEstimated.bedType}</td>
                     </tr>
                 )
             })}

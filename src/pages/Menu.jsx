@@ -4,6 +4,7 @@ import newsImage from "../assets/images/menu/news.jpg";
 import blogImage from "../assets/images/menu/blog.jpg";
 import searchImage from "../assets/images/menu/search.jpg";
 import reviewsImage from "../assets/images/menu/reviews.jpg";
+import "../assets/styles/menu.scss";
 
 const Menu = () => {
     const navigate = useNavigate();
@@ -15,149 +16,92 @@ const Menu = () => {
 
     return (
     <> 
-    <div style={{height: '2.5em'}}></div>
 
-    {/* Component cards / Bootstrap */}
-    <div className="row">
-    <div className="col-sm-6 mb-3 mb-sm-0">
-        <div className="card">
-        <img src={newsImage} className="card-img-top img-responsive" alt="news image"/>
-        <div className="card-body">
-            <h5 className="card-title">News Feed</h5>
-            <p className="card-text">Read about our latest collaboration with Bill Gates and Nicky Minaj</p>          
-            <a onClick={navigateNews} className="btn btn-primary">See latest news</a>
+    {/* First menu row */}
+      <div className="animationContent" style={{position: 'absolute', top: '15%', left: '10%'}}>
+        <div className="circle">
+          <div className="circle_title">
+            <h2>News</h2>
+            <h3>Read the latest hotel news</h3>
+          </div>
+          <div onClick={navigateNews} className="circle_inner">
+            <div className="circle_inner__layer">
+              <img src={newsImage}/>
+            </div>
+          </div>
+          <div className="content_shadow"></div>
         </div>
-        </div>
-    </div>
-    <div className="col-sm-6">
-        <div className="card">
-        <img src={blogImage} className="card-img-top img-responsive" alt="blog image"/>
-        <div className="card-body">
-            <h5 className="card-title">Hotel Blog</h5>
-            <p className="card-text"> Written by our interns who are cheaper than AI </p>
-            <a onClick={navigateBlog} className="btn btn-primary">Enter the blogosphere</a>
-        </div>
-        </div>
-    </div>
-    </div>
+      </div>
 
-    <div className="row">
-    <div className="mb-3 mb-sm-0 mt-3">
-        <div className="card">
-        <div className="card-body">
-            <h1 className="card-title animate__animated animate__bounceIn"> Hotel Analysis and Data </h1>
-            <p className="card-text"> Compare hotel prices by geolocation like a pro </p>
+      <div className="animationContent" style={{position: 'absolute', top: '15%', left: '40%'}}>
+        <div className="circle">
+          <div className="circle_title">
+            <h2 style={{whiteSpace: 'nowrap', left:'-1em'}}>Hotel Search Engine</h2>
+            <h3 style={{whiteSpace: 'nowrap', left:'-0.5em'}}>Experimental black box technology</h3>
+          </div>
+          <div onClick={navigateSearch} className="circle_inner">
+            <div className="circle_inner__layer">
+              <img src={searchImage}/>
+            </div>
+          </div>
+          <div className="content_shadow"></div>
         </div>
-        </div>
-    </div>
-    </div>
+      </div>
 
-    <div className="row">
-    <div className="col-sm-6 mb-3 mb-sm-0 mt-3">
-        <div className="card">
-        <img src={searchImage} className="card-img-top img-responsive" alt="blog image"/>
-        <div className="card-body">
-            <h5 className="card-title">Search</h5>
-            <p className="card-text"> Black box experimental technology </p>
-            <a onClick={navigateSearch} className="btn btn-primary"> Enter hotel search engine </a>
+      <div className="animationContent" style={{position: 'absolute', top: '15%', left: '70%'}}>
+        <div className="circle">
+          <div className="circle_title">
+            <h2>Blog</h2>
+            <h3 style={{whiteSpace: 'nowrap', left:'-1em'}}>Written by interns, cheaper than AI</h3>
+          </div>
+          <div onClick={navigateBlog} className="circle_inner">
+            <div className="circle_inner__layer">
+              <img src={blogImage}/>
+            </div>
+          </div>
+          <div className="content_shadow"></div>
         </div>
-        </div>
-    </div>
-    <div className="col-sm-6 mt-3">
-        <div className="card">
-        <img src={reviewsImage} className="card-img-top img-responsive" alt="blog image"/>
-        <div className="card-body">
-            <h5 className="card-title">Reviews</h5>
-            <p className="card-text"> Don't take our word for it, see the best reviews we could buy! </p>
-            <a onClick={navigateReviews} className="btn btn-primary">Explore product reviews</a>
-        </div>
-        </div>
-    </div>
-    </div>
+      </div>
 
-    <div className="row">
-    <div className="mb-3 mb-sm-0 mt-3">
-        <div className="card">
-        <div className="card-body">
-            <h5 className="card-title">Contacts</h5>
-            <a onClick={navigateContacts} className="btn btn-primary">Contact us</a>
+    {/* Second menu row */}
+      <div className="animationContent" style={{position: 'absolute', top: '45%', left: '25%'}}>
+        <div className="circle">
+          <div className="circle_title">
+            <h2>Reviews</h2>
+            <h3 style={{whiteSpace: 'nowrap', left:'-1em'}}>The best reviews we could buy!</h3>
+          </div>
+          <div onClick={navigateReviews} className="circle_inner">
+            <div className="circle_inner__layer">
+              <img src={reviewsImage}/>
+            </div>
+          </div>
+          <div className="content_shadow"></div>
         </div>
+      </div>
+
+      <div className="animationContent" style={{position: 'absolute', top: '45%', left: '55%'}}>
+        <div className="circle">
+          <div className="circle_title">
+            <h2>Contact Us</h2>
+            <h3>Catch us if you can!</h3>
+          </div>
+          <div onClick={navigateContacts} className="circle_inner">
+            <div className="circle_inner__layer">
+              <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/pc7.png"/>
+            </div>
+            <div className="circle_inner__layer">
+              <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/pc8.png"/>
+            </div>
+            <div className="circle_inner__layer">
+              <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/pc9.png"/>
+            </div>
+          </div>
+          <div className="content_shadow"></div>
         </div>
-    </div>
-    </div>
+      </div>
 
     </>
     );
 };
  
 export default Menu;
-
-
-
-// import React, { useState } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-// import {
-//   decrement,
-//   increment,
-//   incrementByAmount,
-//   incrementAsync,
-//   incrementIfOdd,
-//   selectCount,
-// } from './counterSlice';
-// import styles from './Counter.module.css';
-
-// export function Counter() {
-//   const count = useSelector(selectCount);
-//   const dispatch = useDispatch();
-//   const [incrementAmount, setIncrementAmount] = useState('2');
-
-//   const incrementValue = Number(incrementAmount) || 0;
-
-//   return (
-//     <div>
-//       <div className={styles.row}>
-//         <button
-//           className={styles.button}
-//           aria-label="Decrement value"
-//           onClick={() => dispatch(decrement())}
-//         >
-//           -
-//         </button>
-//         <span className={styles.value}>{count}</span>
-//         <button
-//           className={styles.button}
-//           aria-label="Increment value"
-//           onClick={() => dispatch(increment())}
-//         >
-//           +
-//         </button>
-//       </div>
-//       <div className={styles.row}>
-//         <input
-//           className={styles.textbox}
-//           aria-label="Set increment amount"
-//           value={incrementAmount}
-//           onChange={(e) => setIncrementAmount(e.target.value)}
-//         />
-//         <button
-//           className={styles.button}
-//           onClick={() => dispatch(incrementByAmount(incrementValue))}
-//         >
-//           Add Amount
-//         </button>
-//         <button
-//           className={styles.asyncButton}
-//           onClick={() => dispatch(incrementAsync(incrementValue))}
-//         >
-//           Add Async
-//         </button>
-//         <button
-//           className={styles.button}
-//           onClick={() => dispatch(incrementIfOdd(incrementValue))}
-//         >
-//           Add If Odd
-//         </button>
-//       </div>
-//     </div>
-//   );
-// }

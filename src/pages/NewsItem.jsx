@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import '../assets/styles/newsItem.css';
@@ -31,7 +31,7 @@ const newsItem = () => {
                                 </div>
                                 <div className="media-body">
                                     <label>{newsItems[newsSlug].journoName}</label>
-                                    <span>{newsItems[newsSlug].articleDate}</span>
+                                    <span>{new Date(newsItems[newsSlug].articleDate).toLocaleString("en-UK", {day: "numeric", month: "long", year: "numeric"})}</span>
                                 </div>
                             </div>
                         </div>

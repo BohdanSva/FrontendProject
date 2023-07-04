@@ -16,15 +16,9 @@ import Reviews from './pages/Reviews';
 import Search from './pages/Search';
 import Loading from './pages/Loading';
 import Output from './pages/Output';
-
 import Blog from './pages/Blog';
-import BlogPost from './pages/BlogPost';
-
 import News from './pages/News';
 import NewsItem from './pages/NewsItem';
-
-// Styles
-import './assets/styles/app.css';
 
 // Import JSON data files for automatic DOM creation
 import news from "../src/features/news/news.json";

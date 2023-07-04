@@ -7,7 +7,9 @@ import {
   selectQuery, selectUnits, selectSlider, selectCheckin, selectCheckout, selectLocation, selectHotelToken, selectHotelInfo, 
   setLoadingProgress, reset } 
   from "../features/search/searchSlice";
-import Datepicker from '../features/datepicker/datepicker';
+import Datepicker from '../features/search/datepicker';
+import { MapContainer, TileLayer, useMap, useMapEvents, Marker, Popup, Circle } from 'react-leaflet'
+// import '../assets/styles/search.css';
 
 const Search = () => {
   // Hooks definitions
@@ -123,7 +125,7 @@ const Search = () => {
   }, []); // Create only once on initialization
 
   // Initialize API - get hotel rates
-  const getHotelRates = async (hotel) => {   
+  const getHotelRates = async () => {   
     try {
     for (let hotel in hotelInfo.data) { // Loop through every hotel in hotelInfo.data array
     dispatch(setLoadingProgress());
@@ -134,11 +136,10 @@ const Search = () => {
       headers: {
         "authorization": `Bearer ${hotelToken}`,
       },
-      count: 0,
     })
 
     console.log(data);
-    if (data.data.length > 0) { // Only save hotels with pricing into store
+    if (data.data.length > 0) { // Only save hotels with pricing into the store
       dispatch(setHotelRates(data.data)); // Dispatches action setHotelRates, so data = "hotelRates" in the store
     };
     }; 
@@ -146,6 +147,25 @@ const Search = () => {
     catch (error) {console.log(error);}
   }
 
+  // Show user location on the map
+  function LocationMarker() {
+    const [position, setPosition] = useState(null);
+    const map = useMapEvents({
+      click() { // When the user clicks on the map
+        map.locate() // Access geolocation API
+      },
+      locationfound(e) {
+        setPosition(e.latlng)
+        map.flyTo(e.latlng, map.getZoom())
+      },
+    })
+    return position === null ? null : (
+      <Marker position={position}>
+        <Popup>You are here</Popup>
+      </Marker>
+    )
+  }
+  
   return (
     <>
 
@@ -183,7 +203,7 @@ const Search = () => {
 
       {/* Slider - Bootstrap */}
       <label htmlFor="customRange1" className="form-label mt-1"> Search within the range of {sliderRange} {units=="KM" ? "kilometers" : "miles"} </label>
-        <input type="range" className="form-range" onChange={onSliderInput} min="0" max="100" defaultValue="50" step="1"/>
+        <input type="range" className="form-range" onChange={onSliderInput} min="0" max="10" defaultValue="5" step="1"/>
 
       {Datepicker()}
       <div className="container text-center">
@@ -205,12 +225,18 @@ const Search = () => {
 
       {/* Submit button - Bootstrap */}
       <div className="d-grid gap-2 col-3 mx-auto mt-5 mb-3">
-        
         <button onClick={sendAddress} className="btn btn-primary" type="submit">Submit search</button>
-        
       </div>
       
     </form>
+    </section>
+
+    {/* Map */}
+    <section>
+    <MapContainer center={{ lat: 51.505, lng: -0.09 }} zoom={7} scrollWheelZoom={false} style={{width: '80em', height: '20em'}}>
+      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
+      <LocationMarker />
+    </MapContainer>
     </section>
 
     </>

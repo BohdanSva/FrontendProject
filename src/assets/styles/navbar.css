@@ -1,0 +1,9 @@
+/* Mobile first */
+@media (max-width: 600px) {
+    /* Hide top menu navbar in mobile, leaving only hamburger button */
+    .nav { 
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logoImage from '../assets/favicons/favicon-32x32.png'
+import logoImage from '../assets/favicons/favicon-32x32.png';
+import '../assets/styles/navbar.css';
 
 const Navbar = () => {
     

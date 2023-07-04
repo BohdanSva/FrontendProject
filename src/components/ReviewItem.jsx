@@ -16,8 +16,8 @@ return (
   <ReviewCard>
     <div className="num-display">{item.rating}</div>
     <button onClick={() => handleDelete(item.id)} className="close">
-      {/* Import X-shaped icon from React Icons*/}
-      <FaTimes color="purple" />
+      {/* Import X-shaped icon from React Icons / FontAwesome*/}
+      <FaTimes color="grey"/>
     </button>
     <div className="text-display">{item.text}</div>
   </ReviewCard>

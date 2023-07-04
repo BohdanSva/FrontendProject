@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   units: "KM",
-  slider: 50,
+  slider: 5,
   hotelRates: [], // Must be defined at launch, otherwise the spread operator below would cause it to crash
   loading: 0,
 };
@@ -49,8 +49,8 @@ export const searchSlice = createSlice({
 
 // Export of reducers
 export const {
-  setQuery, setUnits, setSlider, setCheckin, setCheckout, setLocation, setHotelToken, setHotelInfo, setHotelRates, setLoadingProgress,
-  reset,
+  setQuery, setUnits, setSlider, setCheckin, setCheckout, setLocation, setHotelToken, setHotelInfo, setHotelRates, 
+  setLoadingProgress, reset, 
  } = searchSlice.actions;
 
 // Export of selector functions // allows us to select a value from the state

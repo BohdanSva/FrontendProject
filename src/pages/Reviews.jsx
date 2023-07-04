@@ -37,7 +37,7 @@ const Reviews = () => {
 
         {/* Review / Material Design for Bootstrap */}
         <div className="row text-center">
-        <div className="col-md-2 mb-5 mb-md-0" style={{position: 'fixed', left: '20px', top: '35%'}}>
+        <div className="col-md-2 mb-5 mb-md-0 testimonial left">
         <div className="d-flex justify-content-center mb-4">
             <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp"
             className="rounded-circle shadow-1-strong" width="150" height="150" />
@@ -69,7 +69,7 @@ const Reviews = () => {
         </div>
         </div>
 
-        <div className="col-md-2 mb-5 mb-md-0" style={{position: 'fixed', right: '20px', top: '35%'}}>
+        <div className="col-md-2 mb-5 mb-md-0 testimonial right">
         <div className="d-flex justify-content-center mb-4">
             <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(2).webp"
             className="rounded-circle shadow-1-strong" width="150" height="150" />
